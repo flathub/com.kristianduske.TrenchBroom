@@ -14,4 +14,7 @@
   <developer_name>Kristian Duske</developer_name>
   <content_rating type="oars-1.1"/>
   <update_contact>kristian.duske@gmail.com</update_contact>
+  <releases>
+    <release version="2019.5" date="2019-04-22"></release>
+  </releases>
 </component>
