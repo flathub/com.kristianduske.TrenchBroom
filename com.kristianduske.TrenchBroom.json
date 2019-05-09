@@ -102,8 +102,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/kduske/TrenchBroom.git",
-                    "tag": "v2019.2",
-                    "commit": "67d4016c0b8e8a6cc6cbb11eb6b9ddf2779548ed"
+                    "tag": "v2019.5"
                 },
                 {
                     "type": "script",
