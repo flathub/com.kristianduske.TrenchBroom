@@ -9,12 +9,18 @@
     <p>TrenchBroom is a level editor for games using Quake engine.</p>
   </description>
   <launchable type="desktop-id">com.kristianduske.TrenchBroom.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <caption>The main window</caption>
+      <image>https://kristianduske.com/trenchbroom/images/screenshot.png</image>
+    </screenshot>
+  </screenshots>
   <url type="homepage">http://kristianduske.com/trenchbroom/</url>
   <url type="bugtracker">https://github.com/kduske/trenchbroom/issues</url>
   <developer_name>Kristian Duske</developer_name>
   <content_rating type="oars-1.1"/>
   <update_contact>kristian.duske@gmail.com</update_contact>
   <releases>
-    <release version="2019.5" date="2019-04-22"></release>
+    <release version="2020.1" date="2020-05-16"></release>
   </releases>
 </component>
