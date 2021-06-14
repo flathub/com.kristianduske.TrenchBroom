@@ -1,0 +1,51 @@
+From 523e5e55dc52c799bb5e7b4d48e333da0e673543 Mon Sep 17 00:00:00 2001
+From: Eric Wasylishen <ewasylishen@gmail.com>
+Date: Sun, 4 Apr 2021 20:49:26 -0600
+Subject: [PATCH] 3739: work around link errors with cmake 3.20.0
+
+AUTOMOC on the "common" target was not propagating to the tools that
+depend on it?
+
+Fixes #3739
+---
+ common/benchmark/CMakeLists.txt | 1 +
+ common/test/CMakeLists.txt      | 1 +
+ dump-shortcuts/CMakeLists.txt   | 1 +
+ 3 files changed, 3 insertions(+)
+
+diff --git a/common/benchmark/CMakeLists.txt b/common/benchmark/CMakeLists.txt
+index d4dfb55225..34d6b0d802 100644
+--- a/common/benchmark/CMakeLists.txt
++++ b/common/benchmark/CMakeLists.txt
+@@ -13,6 +13,7 @@ set_property(SOURCE "${COMMON_BENCHMARK_SOURCE_DIR}/Main.cpp" PROPERTY SKIP_UNIT
+ add_executable(common-benchmark ${COMMON_BENCHMARK_SOURCE})
+ target_include_directories(common-benchmark PRIVATE ${COMMON_BENCHMARK_SOURCE_DIR})
+ target_link_libraries(common-benchmark PRIVATE common Catch2::Catch2)
++set_target_properties(common-benchmark PROPERTIES AUTOMOC TRUE)
+ 
+ set_compiler_config(common-benchmark)
+ 
+diff --git a/common/test/CMakeLists.txt b/common/test/CMakeLists.txt
+index 74b3e863fa..79c30a797b 100644
+--- a/common/test/CMakeLists.txt
++++ b/common/test/CMakeLists.txt
+@@ -117,6 +117,7 @@ set_property(SOURCE "${COMMON_TEST_SOURCE_DIR}/RunAllTests.cpp" PROPERTY SKIP_UN
+ add_executable(common-test ${COMMON_TEST_SOURCE})
+ target_include_directories(common-test PRIVATE ${COMMON_TEST_SOURCE_DIR})
+ target_link_libraries(common-test PRIVATE common Catch2::Catch2)
++set_target_properties(common-test PROPERTIES AUTOMOC TRUE)
+ 
+ set_compiler_config(common-test)
+ 
+diff --git a/dump-shortcuts/CMakeLists.txt b/dump-shortcuts/CMakeLists.txt
+index e4eb6be57e..27626bac0f 100644
+--- a/dump-shortcuts/CMakeLists.txt
++++ b/dump-shortcuts/CMakeLists.txt
+@@ -9,6 +9,7 @@ set(DUMP_SHORTCUTS_SOURCE ${DUMP_SHORTCUTS_SOURCE} ${INDEX_OUTPUT_PATH} ${DOC_MA
+ add_executable(dump-shortcuts ${DUMP_SHORTCUTS_SOURCE})
+ target_include_directories(dump-shortcuts PRIVATE ${DUMP_SHORTCUTS_SOURCE_DIR})
+ target_link_libraries(dump-shortcuts PRIVATE common)
++set_target_properties(dump-shortcuts PROPERTIES AUTOMOC TRUE)
+ 
+ set_compiler_config(dump-shortcuts)
+ 

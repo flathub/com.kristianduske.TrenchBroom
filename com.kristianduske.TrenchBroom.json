@@ -1,7 +1,7 @@
 {
     "app-id": "com.kristianduske.TrenchBroom",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.12",
+    "runtime-version": "5.15",
     "sdk": "org.kde.Sdk",
     "command": "trenchbroom.sh",
     "rename-icon": "trenchbroom",
@@ -38,7 +38,7 @@
         }
     },
     "modules": [
-        "shared-modules/glu/glu-9.0.0.json",
+        "shared-modules/glu/glu-9.json",
         {
             "name": "freeimage",
             "buildsystem": "autotools",
@@ -75,19 +75,22 @@
         },
         {
             "name": "trenchbroom",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
-                "-DCMAKE_CXX_FLAGS=-Werror",
                 "-DOpenGL_GL_PREFERENCE=GLVND"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/kduske/TrenchBroom.git",
-                    "commit": "adf452f7af039e1bd8c7a5562b56eaef70bf6a7c",
-                    "tag": "v2020.2"
+                    "commit": "532e1b4d505d5aaf710ba09192d9fbaeb963010a",
+                    "tag": "v2021.1"
+                },
+                {
+                    "type": "patch",
+                    "path": "cmake-fix.patch"
                 }
             ]
         },
@@ -119,27 +122,27 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2020.2/app/resources/linux/trenchbroom.desktop",
+                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/trenchbroom.desktop",
                     "sha256": "d9f533982b9d3d6be4b33e1a3248c7223522654da4f17c6190a408cb2e6dd2b6"
                 },
                 {
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2020.2/app/resources/linux/icons/icon_32.png",
+                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/icons/icon_32.png",
                     "sha256": "ed106980868cbf33281d7907a89d856c50b167031b39bd2e0a317f30ea693a0f"
                 },
                 {
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2020.2/app/resources/linux/icons/icon_64.png",
+                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/icons/icon_64.png",
                     "sha256": "c8d750883cbc837647ad5ad18177ea3e9f2725e723d02fc8e867c91aefd17404"
                 },
                 {
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2020.2/app/resources/linux/icons/icon_128.png",
+                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/icons/icon_128.png",
                     "sha256": "24684fa6b2ac85afe7e9d75017a839a2c0df5d720267c910de43a3cca08d2c76"
                 },
                 {
                     "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2020.2/app/resources/linux/icons/icon_256.png",
+                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/icons/icon_256.png",
                     "sha256": "9edb0d713fde4c7417fa4b3f7037974a1dedb9e3099e1202a8b744ed6f30b314"
                 }
             ]
