@@ -43,6 +43,9 @@
             "name": "freeimage",
             "buildsystem": "autotools",
             "no-autogen": true,
+            "build-options": {
+                "cxxflags": "-Wno-narrowing -std=c++14"
+            },
             "sources": [
                 {
                     "type": "archive",
