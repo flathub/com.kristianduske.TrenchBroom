@@ -87,10 +87,6 @@
                     "url": "https://github.com/kduske/TrenchBroom.git",
                     "commit": "79b5eb27f0f70fb17bc9b2072ea70607d6f7760f",
                     "tag": "v2023.1"
-                },
-                {
-                    "type": "patch",
-                    "path": "cmake-fix.patch"
                 }
             ]
         },
