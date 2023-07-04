@@ -1,7 +1,7 @@
 {
     "app-id": "com.kristianduske.TrenchBroom",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15",
+    "runtime-version": "5.15-22.08",
     "sdk": "org.kde.Sdk",
     "command": "trenchbroom.sh",
     "rename-icon": "trenchbroom",
