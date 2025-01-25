@@ -176,7 +176,7 @@
             "post-install": [
                 "install -Dm 755 app/trenchbroom ${FLATPAK_DEST}/bin/trenchbroom",
                 "install -Dm 644 ../app/resources/linux/trenchbroom.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop",
-                "install -Dm 644 ../${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_DEST}.metainfo.xml",
+                "install -Dm 644 ../${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml",
             "for size in 16 24 32 48 64 128 256 512; do install -Dm0644 ../app/resources/linux/icons/icon_${size}.png ${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/trenchbroom.png; done",
                 "install -Dm0644 ../app/resources/linux/trenchbroom.xml ${FLATPAK_DEST}/share/mime/packages/${FLATPAK_ID}.xml"
             ]
