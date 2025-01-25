@@ -21,6 +21,7 @@
   <content_rating type="oars-1.1"/>
   <update_contact>kristian.duske@gmail.com</update_contact>
   <releases>
+    <release version="2024.2" date="2024-12-31"></release>
     <release version="2021.1" date="2021-02-14"></release>
     <release version="2020.2" date="2020-09-29"></release>
   </releases>
