@@ -1,13 +1,13 @@
 {
     "app-id": "com.kristianduske.TrenchBroom",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15",
+    "runtime-version": "5.15-24.08",
     "sdk": "org.kde.Sdk",
     "command": "trenchbroom.sh",
     "rename-icon": "trenchbroom",
     "finish-args": [
         "--share=ipc",
-        "--socket=x11",
+        "--socket=wayland",
         "--env=QT_DEBUG_PLUGINS=0",
         "--env=QT_QPA_PLATFORM=xcb",
         "--env=TMPDIR=/var/tmp",
@@ -39,9 +39,41 @@
     },
     "modules": [
         "shared-modules/glu/glu-9.json",
+        "shared-modules/glew/glew.json",
+        {
+            "name": "assimp",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DASSIMP_BUILD_ASSIMP_TOOLS=0",
+                "-DASSIMP_BUILD_TESTS=0"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/assimp/assimp.git",
+                    "tag": "v5.3.1"
+                }
+            ]
+        },
+        {
+            "name": "catch2",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/catchorg/Catch2.git",
+                    "tag": "v2.13.8"
+                }
+            ]
+        },
         {
             "name": "freeimage",
             "buildsystem": "autotools",
+            "build-options": {
+                "cxxflags": "-std=c++14",
+                "cflags": "-Wno-implicit-function-declaration"
+            },
             "no-autogen": true,
             "sources": [
                 {
@@ -53,6 +85,29 @@
                     "type": "patch",
                     "path": "freeimage-fix-install.patch",
                     "strip-components": 0
+                }
+            ]
+        },
+        {
+            "name": "fmt",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/fmtlib/fmt/archive/refs/tags/11.0.2.tar.gz",
+                    "sha256": "6cb1e6d37bdcb756dbbe59be438790db409cdb4868c66e888d5df9f13f7c027f"
+                }
+            ]
+        },
+        {
+            "name": "miniz",
+            "buildsystem": "cmake-ninja",
+            "sources":[
+                {
+                    "type": "git",
+                    "url": "https://github.com/richgel999/miniz",
+                    "tag": "3.0.2",
+                    "commit": "293d4db1b7d0ffee9756d035b9ac6f7431ef8492"
                 }
             ]
         },
@@ -74,23 +129,35 @@
             ]
         },
         {
+            "name": "tinyxml2",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/leethomason/tinyxml2",
+                    "tag": "9.0.0"
+                }
+            ]
+        },
+        {
             "name": "trenchbroom",
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
-                "-DOpenGL_GL_PREFERENCE=GLVND"
+                "-DCMAKE_PREFIX_PATH=cmake/packages",
+                "-DCMAKE_INSTALL_PREFIX=/app"
             ],
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/kduske/TrenchBroom.git",
-                    "commit": "532e1b4d505d5aaf710ba09192d9fbaeb963010a",
-                    "tag": "v2021.1"
+                    "url": "https://github.com/TrenchBroom/TrenchBroom.git",
+                    "commit": "4d631aa8c00e7832ac7c1a9efe0db36a8f6908dc",
+                    "tag": "v2024.2"
                 },
                 {
                     "type": "patch",
-                    "path": "cmake-fix.patch"
+                    "path": "cmake-vcpkg.patch"
                 }
             ]
         },
