@@ -12,11 +12,11 @@
   <screenshots>
     <screenshot type="default">
       <caption>The main window</caption>
-      <image>https://kristianduske.com/trenchbroom/images/screenshot.png</image>
+      <image>https://trenchbroom.github.io/images/screenshot.png</image>
     </screenshot>
   </screenshots>
-  <url type="homepage">http://kristianduske.com/trenchbroom/</url>
-  <url type="bugtracker">https://github.com/kduske/trenchbroom/issues</url>
+  <url type="homepage">https://trenchbroom.github.io</url>
+  <url type="bugtracker">https://github.com/trenchbroom/trenchbroom/issues</url>
   <developer_name>Kristian Duske</developer_name>
   <content_rating type="oars-1.1"/>
   <update_contact>kristian.duske@gmail.com</update_contact>
