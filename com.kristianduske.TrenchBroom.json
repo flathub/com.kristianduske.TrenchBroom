@@ -165,6 +165,10 @@
                     "path": "remove-mimetype.patch"
                 },
                 {
+                    "type": "patch",
+                    "path": "ignore-glew-error.patch"
+                },
+                {
                     "type": "file",
                     "path": "com.kristianduske.TrenchBroom.appdata.xml"
                 }
