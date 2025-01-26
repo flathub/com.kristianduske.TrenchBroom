@@ -1,12 +1,11 @@
 --- a/app/CMakeLists.txt	2025-01-25 22:24:17.634916682 +0200
 +++ b/app/CMakeLists.txt	2025-01-25 22:24:33.620831295 +0200
-@@ -345,9 +345,6 @@
-     set(LINUX_RESOURCE_LOCATION "share/TrenchBroom")
+@@ -346,7 +346,7 @@
      set(LINUX_TARGET_RESOURCE_DIRECTORY ${CPACK_PACKAGING_INSTALL_PREFIX}/${LINUX_RESOURCE_LOCATION})
  
--    # add mime type definitions
+     # add mime type definitions
 -    install(FILES "${APP_DIR}/resources/linux/trenchbroom.xml" DESTINATION "${CPACK_PACKAGING_INSTALL_PREFIX}/share/mime/packages/" COMPONENT TrenchBroom)
--
++    install(FILES "${APP_DIR}/resources/linux/trenchbroom.xml" DESTINATION "share/mime/packages/" COMPONENT TrenchBroom)
+ 
      # configure install scripts
      configure_file(${APP_DIR}/resources/linux/postinst ${CMAKE_CURRENT_BINARY_DIR}/linux/postinst @ONLY)
-     configure_file(${APP_DIR}/resources/linux/prerm ${CMAKE_CURRENT_BINARY_DIR}/linux/prerm @ONLY)

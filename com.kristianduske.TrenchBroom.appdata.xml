@@ -4,10 +4,22 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <name>TrenchBroom</name>
-  <summary>Level editor for Quake-based games</summary>
+  <summary>Level editor for Quake-engine based games</summary>
   <description>
-    <p>TrenchBroom is a level editor for games using Quake engine.</p>
+    <p>
+      TrenchBroom is a level editor for games using the Quake engine.
+      It's easy to use and provides many simple and advanced tools to create complex 
+      and interesting levels with ease.
+    </p>
+    <p>
+      TrenchBroom has support for several games including Quake, Quake 2, Hexen 2, Half-Life (experimental), among others.
+    </p>
   </description>
+  <categories>
+    <category>Development</category>
+    <category>X-LevelEditor</category>
+    <category>X-GameLevelEditor</category>
+  </categories>
   <launchable type="desktop-id">com.kristianduske.TrenchBroom.desktop</launchable>
   <screenshots>
     <screenshot type="default">
@@ -16,12 +28,16 @@
     </screenshot>
   </screenshots>
   <url type="homepage">https://trenchbroom.github.io</url>
+  <url type="help">https://trenchbroom.github.io/manual/latest/</url>
+  <url type="vcs-browser">https://github.com/trenchbroom/trenchbroom</url>
   <url type="bugtracker">https://github.com/trenchbroom/trenchbroom/issues</url>
   <developer_name>Kristian Duske</developer_name>
   <content_rating type="oars-1.1"/>
   <update_contact>kristian.duske@gmail.com</update_contact>
   <releases>
-    <release version="2024.2" date="2024-12-31"></release>
+    <release version="2024.2" date="2024-12-31">
+      <url type="details">https://github.com/TrenchBroom/TrenchBroom/releases/tag/v2024.2</url>
+    </release>
     <release version="2021.1" date="2021-02-14"></release>
     <release version="2020.2" date="2020-09-29"></release>
   </releases>
