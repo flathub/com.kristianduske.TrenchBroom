@@ -1,0 +1,11 @@
+--- a/common/src/ui/GLContextManager.cpp	2025-01-25 22:53:41.459537066 +0200
++++ b/common/src/ui/GLContextManager.cpp	2025-01-25 23:11:21.099912560 +0200
+@@ -58,7 +58,7 @@
+ static void initializeGlew()
+ {
+   glewExperimental = GL_TRUE;
+-  if (const auto glewState = glewInit(); glewState != GLEW_OK)
++  if (const auto glewState = glewInit(); glewState != GLEW_OK && glewState != GLEW_ERROR_NO_GLX_DISPLAY)
+   {
+     throw RenderException{fmt::format(
+       "Error initializing glew: {}",

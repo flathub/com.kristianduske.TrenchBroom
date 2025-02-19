@@ -1,15 +1,16 @@
 {
     "app-id": "com.kristianduske.TrenchBroom",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15",
+    "runtime-version": "5.15-24.08",
     "sdk": "org.kde.Sdk",
-    "command": "trenchbroom.sh",
+    "command": "trenchbroom",
     "rename-icon": "trenchbroom",
+    "rename-mime-file": "trenchbroom.xml",
+    "rename-desktop-file": "trenchbroom.desktop",
     "finish-args": [
         "--share=ipc",
-        "--socket=x11",
-        "--env=QT_DEBUG_PLUGINS=0",
-        "--env=QT_QPA_PLATFORM=xcb",
+        "--socket=wayland",
+        "--socket=fallback-x11",
         "--env=TMPDIR=/var/tmp",
         "--filesystem=host",
         "--filesystem=xdg-run/gvfs",
@@ -39,9 +40,41 @@
     },
     "modules": [
         "shared-modules/glu/glu-9.json",
+        "shared-modules/glew/glew.json",
+        {
+            "name": "assimp",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DASSIMP_BUILD_ASSIMP_TOOLS=0",
+                "-DASSIMP_BUILD_TESTS=0"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/assimp/assimp.git",
+                    "tag": "v5.3.1"
+                }
+            ]
+        },
+        {
+            "name": "catch2",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/catchorg/Catch2.git",
+                    "tag": "v2.13.8"
+                }
+            ]
+        },
         {
             "name": "freeimage",
             "buildsystem": "autotools",
+            "build-options": {
+                "cxxflags": "-std=c++14",
+                "cflags": "-Wno-implicit-function-declaration"
+            },
             "no-autogen": true,
             "sources": [
                 {
@@ -53,6 +86,29 @@
                     "type": "patch",
                     "path": "freeimage-fix-install.patch",
                     "strip-components": 0
+                }
+            ]
+        },
+        {
+            "name": "fmt",
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/fmtlib/fmt/archive/refs/tags/11.0.2.tar.gz",
+                    "sha256": "6cb1e6d37bdcb756dbbe59be438790db409cdb4868c66e888d5df9f13f7c027f"
+                }
+            ]
+        },
+        {
+            "name": "miniz",
+            "buildsystem": "cmake-ninja",
+            "sources":[
+                {
+                    "type": "git",
+                    "url": "https://github.com/richgel999/miniz",
+                    "tag": "3.0.2",
+                    "commit": "293d4db1b7d0ffee9756d035b9ac6f7431ef8492"
                 }
             ]
         },
@@ -74,77 +130,56 @@
             ]
         },
         {
+            "name": "tinyxml2",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/leethomason/tinyxml2",
+                    "tag": "9.0.0"
+                }
+            ]
+        },
+        {
             "name": "trenchbroom",
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
-                "-DOpenGL_GL_PREFERENCE=GLVND"
+                "-DCMAKE_PREFIX_PATH=cmake/packages;/app",
+                "-DCMAKE_INSTALL_PREFIX=/app",
+                "-DCPACK_PACKAGING_INSTALL_PREFIX=${FLATPAK_DEST}"
             ],
+            "no-make-install": false,
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/kduske/TrenchBroom.git",
-                    "commit": "532e1b4d505d5aaf710ba09192d9fbaeb963010a",
-                    "tag": "v2021.1"
+                    "url": "https://github.com/TrenchBroom/TrenchBroom.git",
+                    "commit": "4d631aa8c00e7832ac7c1a9efe0db36a8f6908dc",
+                    "tag": "v2024.2"
                 },
                 {
                     "type": "patch",
-                    "path": "cmake-fix.patch"
-                }
-            ]
-        },
-        {
-            "name": "extra-files",
-            "buildsystem": "simple",
-            "build-commands": [
-                "mkdir -p ${FLATPAK_DEST}/app/bin/ ${FLATPAK_DEST}/share/applications ${FLATPAK_DEST}/share/appdata ${FLATPAK_DEST}/share/icons/hicolor/32x32/apps ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps",
-                "install -m 755 trenchbroom.sh ${FLATPAK_DEST}/bin/",
-                "install -m 644 trenchbroom.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop",
-                "install -m 644 ${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/appdata/",
-                "install -m 644 icon_32.png ${FLATPAK_DEST}/share/icons/hicolor/32x32/apps/trenchbroom.png",
-                "install -m 644 icon_64.png ${FLATPAK_DEST}/share/icons/hicolor/64x64/apps/trenchbroom.png",
-                "install -m 644 icon_128.png ${FLATPAK_DEST}/share/icons/hicolor/128x128/apps/trenchbroom.png",
-                "install -m 644 icon_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/trenchbroom.png",
-                "install -m 644 icon_256.png ${FLATPAK_DEST}/share/icons/hicolor/256x256/apps/trenchbroom.png"
-            ],
-            "sources": [
+                    "path": "remove-vcpkg.patch"
+                },
                 {
-                "type": "script",
-                "commands": [
-                    "TB_DEV_MODE=0 trenchbroom $@"
-                ],
-                "dest-filename": "trenchbroom.sh"
+                    "type": "patch",
+                    "path": "remove-mimetype.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "ignore-glew-error.patch"
                 },
                 {
                     "type": "file",
                     "path": "com.kristianduske.TrenchBroom.appdata.xml"
-                },
-                {
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/trenchbroom.desktop",
-                    "sha256": "d9f533982b9d3d6be4b33e1a3248c7223522654da4f17c6190a408cb2e6dd2b6"
-                },
-                {
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/icons/icon_32.png",
-                    "sha256": "ed106980868cbf33281d7907a89d856c50b167031b39bd2e0a317f30ea693a0f"
-                },
-                {
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/icons/icon_64.png",
-                    "sha256": "c8d750883cbc837647ad5ad18177ea3e9f2725e723d02fc8e867c91aefd17404"
-                },
-                {
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/icons/icon_128.png",
-                    "sha256": "24684fa6b2ac85afe7e9d75017a839a2c0df5d720267c910de43a3cca08d2c76"
-                },
-                {
-                    "type": "file",
-                    "url": "https://raw.githubusercontent.com/kduske/TrenchBroom/v2021.1/app/resources/linux/icons/icon_256.png",
-                    "sha256": "9edb0d713fde4c7417fa4b3f7037974a1dedb9e3099e1202a8b744ed6f30b314"
                 }
+            ],
+            "post-install": [
+                "install -Dm 755 app/trenchbroom ${FLATPAK_DEST}/bin/trenchbroom",
+                "install -Dm 644 ../app/resources/linux/trenchbroom.desktop ${FLATPAK_DEST}/share/applications/trenchbroom.desktop",
+                "install -Dm 644 ../${FLATPAK_ID}.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml",
+            "for size in 16 24 32 48 64 128 256 512; do install -Dm0644 ../app/resources/linux/icons/icon_${size}.png ${FLATPAK_DEST}/share/icons/hicolor/${size}x${size}/apps/trenchbroom.png; done"
             ]
         }
     ]
