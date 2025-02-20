@@ -35,6 +35,15 @@
   <content_rating type="oars-1.1"/>
   <update_contact>kristian.duske@gmail.com</update_contact>
   <releases>
+    <release version="2025.1" date="2025-02-13">
+      <url type="details">https://github.com/TrenchBroom/TrenchBroom/releases/tag/v2025.1</url>
+      <description>
+        <ul>
+          <li>Upgrade to Qt 6</li>
+        </ul>
+        <p>For the rest of the release notes, check the link below</p>
+      </description>
+    </release>
     <release version="2024.2" date="2024-12-31">
       <url type="details">https://github.com/TrenchBroom/TrenchBroom/releases/tag/v2024.2</url>
     </release>
