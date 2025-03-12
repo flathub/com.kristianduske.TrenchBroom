@@ -35,6 +35,16 @@
   <content_rating type="oars-1.1"/>
   <update_contact>kristian.duske@gmail.com</update_contact>
   <releases>
+    <release version="2025.2" date="2025-03-02">
+      <url type="details">https://github.com/TrenchBroom/TrenchBroom/releases/tag/v2025.2</url>
+      <description>
+        <ul>
+          <li>Fix parameter handling for game engines and compilation tools</li>
+          <li>xaGe quake.fgd updates</li>
+        </ul>
+        <p>For the rest of the release notes, check the link below</p>
+      </description>
+    </release>
     <release version="2025.1" date="2025-02-13">
       <url type="details">https://github.com/TrenchBroom/TrenchBroom/releases/tag/v2025.1</url>
       <description>
