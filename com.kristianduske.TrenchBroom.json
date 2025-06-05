@@ -155,8 +155,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/TrenchBroom/TrenchBroom.git",
-                    "commit": "e030b09775195186b1a52c3068c68fec0281b6db",
-                    "tag": "v2025.2"
+                    "commit": "4a58e6b6b287137de7fe6d736a8c5e57f1b1209d",
+                    "tag": "v2025.3"
                 },
                 {
                     "type": "patch",

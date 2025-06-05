@@ -35,6 +35,24 @@
   <content_rating type="oars-1.1"/>
   <update_contact>kristian.duske@gmail.com</update_contact>
   <releases>
+    <release version="2025.3" date="2025-05-25">
+      <url type="details">https://github.com/TrenchBroom/TrenchBroom/releases/tag/v2025.3</url>
+      <description>
+        <ul>
+          <li>Fix crash when extruding a brush</li>
+          <li>Fix loading MDX models</li>
+          <li>Make game file system search path case insensitive</li>
+          <li>Format numbers using the current locale in the UI</li>
+          <li>Don't rotate HL models by 90degs about Z axis</li>
+          <li>Make entity rendering consistent</li>
+          <li>Fix entity color parsing</li>
+          <li>Fix assimp transforms</li>
+          <li>Fix mirroring of Bezier patches</li>
+          <li>Fix locale dependent formatting and parsing of floating point values</li>
+        </ul>
+        <p>For the rest of the release notes, check the link below</p>
+      </description>
+    </release>
     <release version="2025.2" date="2025-03-02">
       <url type="details">https://github.com/TrenchBroom/TrenchBroom/releases/tag/v2025.2</url>
       <description>
