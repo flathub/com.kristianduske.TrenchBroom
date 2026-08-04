@@ -35,6 +35,24 @@
   <content_rating type="oars-1.1"/>
   <update_contact>kristian.duske@gmail.com</update_contact>
   <releases>
+    <release version="2026.1" date="2026-06-18">
+      <url type="details">https://github.com/TrenchBroom/TrenchBroom/releases/tag/v2026.1</url>
+      <description>
+        <ul>
+          <li>Automatic texture alignment</li>
+          <li>Allow adding multiple wad files through the file dialog</li>
+          <li>Add SoF support</li>
+          <li>Add stairs shape</li>
+          <li>Add Heretic II .fm model and .m32 texture loaders.</li>
+          <li>Add the option to strip TB specific entity properties when exporting a map</li>
+          <li>Add new menu entry "Extract Selected Objects"</li>
+          <li>Fix crash when editing vertices</li>
+          <li>Fix crash when building an entity renderer for out of bounds skin or frame</li>
+          <li>Fix crash when pasting</li>
+        </ul>
+        <p>For the rest of the release notes, check the link below</p>
+      </description>
+    </release>
     <release version="2025.4" date="2026-01-02">
       <url type="details">https://github.com/TrenchBroom/TrenchBroom/releases/tag/v2025.4</url>
       <description>
