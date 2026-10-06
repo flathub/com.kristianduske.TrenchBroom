@@ -1,7 +1,7 @@
 {
     "id": "com.kristianduske.TrenchBroom",
     "runtime": "org.kde.Platform",
-    "runtime-version": "6.9",
+    "runtime-version": "6.11",
     "sdk": "org.kde.Sdk",
     "command": "trenchbroom",
     "rename-icon": "trenchbroom",
@@ -138,6 +138,23 @@
             ]
         },
         {
+            "name": "ctre",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DCTRE_BUILD_TESTS=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/hanickadot/compile-time-regular-expressions.git",
+                    "tag": "v3.11.0",
+                    "commit": "4ab18abfd88ccfc867734bf5d31b13285854577e"
+                }
+            ]
+        },
+        {
             "name": "miniz",
             "buildsystem": "cmake-ninja",
             "sources":[
@@ -173,7 +190,8 @@
             "config-opts": [
                 "-DUUID_USING_CXX20_SPAN=ON",
                 "-DUUID_SYSTEM_GENERATOR=ON",
-                "-DUUID_TIME_GENERATOR=ON"
+                "-DUUID_TIME_GENERATOR=ON",
+                "-DUUID_BUILD_TESTS=OFF"
             ],
             "sources": [
                 {
@@ -213,8 +231,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/TrenchBroom/TrenchBroom.git",
-                    "commit": "b8c14a93c6945a389c56ff7bf77e869c16f24895",
-                    "tag": "v2026.1",
+                    "commit": "4c756be1a54a28d921d18c77716a5f170bdc31d0",
+                    "tag": "v2026.2",
                     "disable-submodules": true
                 },
                 {
